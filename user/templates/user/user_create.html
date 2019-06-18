@@ -1,0 +1,66 @@
+{% extends 'user/base.html' %}
+
+
+{% block content %}
+
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form id="UserForm" method='post' class="form" role="form" action ='' method ='POST'>
+              <div class="modal-header">
+                <h4 class="modal-title">Update User</h4>
+                <button onclick="self.close()" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              </div>
+              <div class="modal-body">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <div class="form-group">
+                    {% for field in form %}
+                        <div class="form-group">
+                            {% if field.errors %}
+                                <ul class="form-errors">
+                                {% for error in field.errors %}
+                                    <li><span class="fa fa-exclamation-triangle"></span> <strong>{{ error|escape }}</strong></li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                            {{ field.label_tag }} {{ field }}
+                            {% if field.help_text %}<div class="form-helptext">{{ field.help_text }}</div>{% endif %}
+                        </div>
+                    {% endfor %}
+              </div>
+              <div class="modal-footer">
+                <input type="submit" class="btn btn-primary" value="save" style="margin-bottom: 5px;" />
+                <a href='/user/'> Cancel</a>
+              </div>
+        </form>
+        <script>
+            jQuery('.modal-content .calendar').datepicker({ dateFormat: "yy-mm-dd" });
+
+                var form_options = {
+                    target: '#modal',
+                    success: function() {  }
+                }
+                $('#UserForm').ajaxForm(form_options);
+        </script>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+
+
+<!--<form action ='' method ='POST'>-->
+<!--    {% csrf_token%}-->
+<!--        {{form.as_table}}-->
+<!--        <input type='submit' value='Save'/>-->
+<!--</form>-->
+{% endblock %}
+

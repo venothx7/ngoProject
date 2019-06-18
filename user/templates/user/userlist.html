@@ -1,0 +1,55 @@
+{% extends 'user/base.html' %}
+{% load static %}
+
+
+{% block extra_js%}
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+{% endblock %}
+
+{% block content %}
+{% comment %} <link rel="stylesheet"  href="{% static "/css/user.css" %}" > {% endcomment %}
+
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2>User Management</h2>
+<a href="/user/create" id="button1" class="btn btn-light">Add User</a>
+          </div>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+
+    <tr>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+      <th scope="col"> Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+    <td> {{user.first_name}} </td>
+    <td>{{user.last_name}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.get_role_display}}</td>
+    <td> <a href="update/{{user.id}}">Edit/{{user.id}} </a>  </td>
+    <td> <a href="delete/{{user.id}}">delete/{{user.id}} </a>  </td>
+    
+
+      {% endfor %}
+
+    </tr>
+  </tbody>
+</table>
+<!--  Modal-->
+<!-- Adding User-->
+ 
+{% comment %} <script src="{% static 'js/user.js' %}"></script> {% endcomment %}
+
+{% endblock %}
+
+{% block extrascripts %}
+
+{% endblock extrascripts %}

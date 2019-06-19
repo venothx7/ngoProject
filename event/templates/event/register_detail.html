@@ -20,7 +20,7 @@
 
         {{ event.description|linebreaks }}
 
-        {% if event.register_allowed %}
+        {% if event.register %}
             <a href="{% url "register:register_create" event.id %}" class="button.link">Register</a>
         {% else %}
         `   <p> Registration is not currently available</p>

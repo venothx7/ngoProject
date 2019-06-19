@@ -2,7 +2,7 @@ from django.urls import path, include
 # from .views import UserCreateView, UserUpdateView, UserDelete
 
 from . import views
-
+app_name='event'
 urlpatterns = [
     path('', views.Index.as_view(), name='index'),
     path('create', views.EventCreateView.as_view(), name='event-create'),

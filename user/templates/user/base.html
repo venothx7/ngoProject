@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="nav navbar-nav nav-flex-icons ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">UsernameHere</a>
+                    <a class="nav-link" href="#">{{user.first_name}} {{user.last_name}}({{user.get_role_display}})</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../admin">Admin Login</a>
@@ -64,7 +64,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="userview">
+                <a class="nav-link" href="../event/userview">
                   <span data-feather="shopping-cart"></span>
                   User View
                 </a>

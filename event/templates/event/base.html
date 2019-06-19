@@ -1,23 +1,82 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>{% block title %}NGO{% endblock %}</title>
-    <link href="{% static "css/baseuser.css" %}" rel="stylesheet">
-</head>
-<body>
-    <div id="header">
-        <a href="event/userview" class="logo">NGO</a>
-    </div>
-    <div id="subheader">
-        <div>
 
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+ <head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet"  type="text/css" href="{% static 'css/base.css' %}" >
+<link href="{% static "css/baseuser.css" %}" rel="stylesheet" rel="stylesheet"  type="text/css">
+
+<html>
+    
+
+    <title> NGO Website </title>
+  </head>
+  <body>
+
+<div class="container">
+                 <!--   the navbar -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sidebarNavigation" data-sidebarClass="navbar-dark bg-dark">
+        <a class="navbar-brand" href="../event/userview">NGO</a>
+        <button class="navbar-toggler leftNavbarToggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">{{user.first_name}} {{user.last_name}}({{user.get_role_display}})</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../admin">Admin Login</a>
+                </li>
+                <li class ='nav-item'>
+                   <a class="nav-link" href="../logout">Log Out</a>
+                </li>
+              </ul>
         </div>
+    </nav>
+
+
+    <div class="container-fluid">
+      <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          
+
+          {% block content %}
+          {% endblock %}
+        </main>
+
     </div>
-    <div id="content">
-        {% block content %}
-        {% endblock %}
-    </div>
-</body>
+</div>
+     </div>
+
+     <!-- JavaScript -->
+    {% block scripts %}
+      <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+      <script src="{% static 'assets/js/popper.min.js' %}"></script>
+      <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+      <!-- You can alternatively load the minified version -->
+      <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+       
+    {% endblock scripts %}
+
+    {% block extrascripts %}{% endblock extrascripts %}
+
+  </body>
+
+
+
+
 </html>
+
+
+

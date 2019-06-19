@@ -40,8 +40,11 @@ INSTALLED_APPS = [
     'user',
     'event',
     'bootstrap_modal_forms',
-    'widget_tweaks'
+    'widget_tweaks',
+    'register'
 ]
+
+AUTH_USER_MODEL = 'user.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -125,3 +128,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), '/static/',]
+LOGIN_REDIRECT_URL = '/login_success'
+LOGOUT_REDIRECT_URL = '../login'

@@ -1,0 +1,16 @@
+{% extends "event/base.html" %}
+
+{% block title %}
+    Registration
+{% endblock %}
+
+{% block content %}
+    <h1>Register</h1>
+    <h2>{{event.name}}</h2>
+    <form action="." method="post" class="register-form">
+        {{ form.as_p }}
+        <p><input type="submit" value="Next"></p>
+        {% csrf_token %}
+    </form>
+
+{% endblock %}

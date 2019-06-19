@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 
 # Create your models here.
 class Event(models.Model):
@@ -20,6 +22,7 @@ class Event(models.Model):
         choices=CATEGORY_CHOICES,
         default=CONFERENCE,
     )
+    slug = models.SlugField(max_length=200, db_index=True, default=0)
     start_date = models.DateField(auto_now_add=False)
     end_date = models.DateField(auto_now_add=False)
     start_time = models.TimeField(auto_now_add=False, blank = True)

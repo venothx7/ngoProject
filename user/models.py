@@ -1,7 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.utils.translation import ugettext_lazy as _
 
-class User(models.Model):
-    
+
+
+class CustomUser(AbstractUser):
     ADMIN = 'a'
     USER ='u'
     ROLE_CHOICES =(
@@ -9,7 +12,7 @@ class User(models.Model):
         (USER,'User'),
     )
 
-    first_name = models.CharField(max_length=50)
+    first_name = models.CharField( max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
     password = models.CharField(max_length=20)
@@ -17,6 +20,19 @@ class User(models.Model):
         choices=ROLE_CHOICES, 
         max_length=5, 
         default =USER)
+
+    username = None
+    email = models.EmailField(_('email address'), unique=True)
+
+    username = models.CharField( max_length=150, unique= True)
+    def save(self, *args,**kwargs):
+        self.set_password(self.password)
+        self.username = self.email
+        self.email = self.username
+        if self.role is 'a':
+            self.is_staff = True
+            self.is_superuser = True
+        super().save(*args,**kwargs)
 
     class Meta:
         ordering = ('first_name',)

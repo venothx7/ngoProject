@@ -1,0 +1,14 @@
+{% extends "event/base.html" %}
+
+{% block title %}
+    Your registration details
+{% endblock %}
+
+{% block content %}
+    <h1>Thank you for registering for {{event.name}}</h1>
+    <p> Adult tickets ordered: {{registration.adult_quantity}}</p>
+    <p> Child tickets ordered: {{registration.child_quantity}}</p>
+    <p> Total cost: {{registration.get_cost}}</p>
+
+    <a href="{% url "register:confirm" register.id %}" class="button">Confirm registration</a>
+{% endblock %}

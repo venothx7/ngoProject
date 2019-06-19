@@ -1,0 +1,26 @@
+{% extends "event/base.html" %}
+{% load static %}
+
+{% block title %}
+    Events
+{% endblock %}
+
+{% block content %}
+    <div id="main" class="product-list">
+        <h1>Events</h1>
+            {% for event in events %}
+                <div class="item">
+                    <a href="{{ event.get_detail_url }}">
+                        <img src="{% if event.image %}{{ event.image.url }}{% else %}{% static "img/no_image.png" %}
+                        {% endif %}">
+                    </a><br>
+                    <a href="{{ event.get_detail_url }}" style="font-family:Helvetica">
+                        {{event.name}}:{{event.location}} </a><br>
+                </div>
+            {% endfor %}
+    </div>
+{% endblock %}
+
+
+
+

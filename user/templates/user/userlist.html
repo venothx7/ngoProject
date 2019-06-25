@@ -28,17 +28,18 @@
     </tr>
   </thead>
   <tbody>
-    {% for user in users %}
+  {% comment %} REAL PROJECt {% endcomment %}
+    {% for u in users %}
     <tr>
-    <td> {{user.first_name}} </td>
-    <td>{{user.last_name}}</td>
-    <td>{{user.email}}</td>
-    <td>{{user.get_role_display}}</td>
-    <td> <a href="update/{{user.id}}">Edit/{{user.id}} </a>  </td>
-    <td> <a href="delete/{{user.id}}">delete/{{user.id}} </a>  </td>
-    
-
-      {% endfor %}
+    <td> {{u.first_name}} </td>
+    <td>{{u.last_name}}</td>
+    <td>{{u.email}}</td>
+    <td>{{u.get_role_display}}</td>
+    <td> <a href="update/{{u.id}}">Edit/{{u.id}} </a>  </td>
+    {% if user.id != u.id%}
+      <td> <a href="delete/{{u.id}}">delete/{{u.id}} </a>  </td>
+    {% endif %}
+    {% endfor %}
 
     </tr>
   </tbody>

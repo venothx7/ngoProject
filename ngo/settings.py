@@ -25,7 +25,7 @@ SECRET_KEY = '5$h2e8w_an#j3qp+fy*omnzg-ewu+)n&j7f($d@h^9+dtf6ebr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-3-14-64-7.us-east-2.compute.amazonaws.com', '3.14.64.7']
 
 
 # Application definition
@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'user',
     'event',
     'bootstrap_modal_forms',
-    'widget_tweaks',
-    'register'
+    'widget_tweaks', 
+    'register', 
 ]
 
 AUTH_USER_MODEL = 'user.CustomUser'
@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'ngo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ngo_project',
+        'USER': 'root',
+        'PASSWORD': 'ornfML64lVp0',
+        'HOST': '/opt/bitnami/mysql/tmp/mysql.sock',
+        'PORT': '3306',
     }
 }
 
@@ -120,14 +124,22 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/static/',
+]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 
-STATIC_URL = '/static/'
+STATIC_URL = '..//static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), '../static/',]
+#STATIC_ROOT = '/static/'
+#STATIC_ROOT = '~/apps/django/django_projects/Project/static'
+#STATIC_URL = '/opt/bitnami/apps/django/django_projects/Project/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), '/static/',]
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), '~/apps/django/django_projects/Project/static/',]
 LOGIN_REDIRECT_URL = '/login_success'
 LOGOUT_REDIRECT_URL = '../login'
